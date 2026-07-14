@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+@layer components {
+  .card {
+    @apply bg-surface-card rounded-xl border border-surface-border/30 p-6;
+  }
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-surface-hover hover:bg-surface-border text-slate-200 font-medium py-2.5 px-5 rounded-lg border border-surface-border/50 transition-all duration-200;
+  }
+  .btn-accent {
+    @apply bg-accent-500 hover:bg-accent-600 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200;
+  }
+  .input-field {
+    @apply w-full bg-surface-dark border border-surface-border/50 rounded-lg px-4 py-2.5 text-white placeholder-slate-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all duration-200;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-primary {
+    @apply badge bg-primary-500/20 text-primary-300;
+  }
+  .badge-accent {
+    @apply badge bg-accent-500/20 text-accent-300;
+  }
+  .badge-success {
+    @apply badge bg-emerald-500/20 text-emerald-300;
+  }
+  .badge-danger {
+    @apply badge bg-red-500/20 text-red-300;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.2s ease-out;
+}
+
+/* ============ 打印 / PDF 导出样式 ============ */
+@media print {
+  /* 隐藏导航、侧边栏、按钮 */
+  nav, .sidebar, .mobile-nav, button, .btn-primary, .btn-secondary, .btn-accent,
+  input, select, textarea, .no-print {
+    display: none !important;
+  }
+
+  /* 卡片背景和边框适配打印 */
+  .card {
+    background: white !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  /* 文字颜色改为黑色 */
+  .card h2, .card h3, .card h4, .card p, .card span, .card div {
+    color: #1a202c !important;
+  }
+
+  .text-white { color: #1a202c !important; }
+  .text-slate-300, .text-slate-400, .text-slate-500 { color: #4a5568 !important; }
+  .text-primary-400, .text-primary-300 { color: #2563eb !important; }
+  .text-emerald-400 { color: #059669 !important; }
+  .text-accent-400 { color: #d97706 !important; }
+  .text-red-400 { color: #dc2626 !important; }
+
+  /* 背景色移除 */
+  .bg-surface-dark, .bg-surface-hover, .bg-primary-600\/20, .bg-accent-500\/20,
+  .bg-emerald-500\/20, .bg-red-500\/20, .bg-primary-500\/10, .bg-accent-500\/10,
+  .bg-surface-hover\/50, .bg-surface-dark\/50 {
+    background: transparent !important;
+  }
+
+  /* 页面边距 */
+  body {
+    padding: 20px !important;
+    background: white !important;
+  }
+
+  /* 确保内容不被截断 */
+  .space-y-6 > * { break-inside: avoid; }
+  .grid { break-inside: avoid; }
+}

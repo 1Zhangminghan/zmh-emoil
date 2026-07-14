@@ -1,0 +1,9 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm install && cd server && npm install && cd .. && npm run build:prod"
+
+[deploy]
+startCommand = "cd server && npm start"
+
+[service]
+port = 3003
