@@ -1,6 +1,6 @@
 // ============ 真实 AI 客户端 ============
 // 支持 OpenAI 兼容 API（DeepSeek / 通义千问 / 豆包 / ChatGPT / Ollama 等）
-// API Key 优先级：请求传入 > 环境变量 AI_API_KEY
+// API Key 优先级：用户自定义 Key > 环境变量 AI_API_KEY
 // 支持本地 Ollama 模式（无需 API Key，自动检测 localhost）
 // 都未配置时自动降级为本地规则引擎
 

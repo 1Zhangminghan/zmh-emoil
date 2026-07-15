@@ -195,7 +195,7 @@ router.post('/suggestions', async (req: Request, res: Response) => {
     const data: SuggestionsRequest = req.body
 
     // 获取 AI 配置
-    const apiKey = process.env.AI_API_KEY || (req.headers['x-ai-key'] as string | undefined)
+    const apiKey = (req.headers['x-ai-key'] as string | undefined) || process.env.AI_API_KEY
     const baseUrl = process.env.AI_API_BASE_URL || (req.headers['x-ai-base-url'] as string | undefined)
     const model = process.env.AI_MODEL || (req.headers['x-ai-model'] as string | undefined)
     const aiOptions: AIClientOptions | undefined = (apiKey || baseUrl || model)

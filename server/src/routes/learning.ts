@@ -31,7 +31,7 @@ router.get('/materials', (req: Request, res: Response) => {
 router.use(requireAuth)
 
 function getAIOptions(req: Request): AIClientOptions | undefined {
-  const apiKey = process.env.AI_API_KEY || (req.headers['x-ai-key'] as string | undefined)
+  const apiKey = (req.headers['x-ai-key'] as string | undefined) || process.env.AI_API_KEY
   const baseUrl = process.env.AI_API_BASE_URL || (req.headers['x-ai-base-url'] as string | undefined)
   const model = process.env.AI_MODEL || (req.headers['x-ai-model'] as string | undefined)
   if (apiKey || baseUrl || model) return { apiKey, baseUrl, model }

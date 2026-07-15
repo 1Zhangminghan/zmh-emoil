@@ -201,7 +201,7 @@ export default function Settings() {
           AI 智能分析
         </h3>
         <p className="text-slate-400 text-sm mb-4">
-          默认使用 <strong className="text-slate-300">Ollama 本地千问模型</strong>（完全免费，无需 API Key）。也可以切换到云端 API 或自定义 API Key。
+          你的 API Key 会<strong className="text-primary-300">优先于服务端配置</strong>，仅保存在你的浏览器中，不会上传到服务器。
         </p>
 
         <div className="space-y-3">
@@ -261,10 +261,11 @@ export default function Settings() {
           </div>
 
           <div className="bg-slate-800/50 rounded-lg p-3 text-xs text-slate-400 space-y-1">
-            <p className="font-medium text-slate-300 mb-1">AI 接入方式</p>
-            <p>1. <span className="text-emerald-400 font-medium">Ollama 本地模型</span> — 默认方案，完全免费，无需注册。安装后运行 <code className="bg-slate-700 px-1 rounded">ollama pull qwen3:8b</code> 即可使用千问</p>
-            <p>2. <a href="https://cloud.siliconflow.cn" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline">硅基流动</a> — 云端 API，注册送2000万Token，支持千问/DeepSeek/GLM等</p>
+            <p className="font-medium text-slate-300 mb-1">AI 接入方式（任选其一，免费或低成本）</p>
+            <p>1. <a href="https://platform.deepseek.com" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline">DeepSeek</a> — 注册即送额度，API 兼容 OpenAI，性价比极高</p>
+            <p>2. <a href="https://cloud.siliconflow.cn" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline">硅基流动</a> — 注册送2000万Token，支持千问/DeepSeek/GLM等</p>
             <p>3. <a href="https://bailian.console.aliyun.com/" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:underline">阿里云百炼</a> — 千问官方 API，新用户免费100万tokens/月</p>
+            <p className="text-slate-500 mt-1">如果不配置，将使用服务端默认 Key 或本地规则引擎</p>
           </div>
         </div>
       </div>

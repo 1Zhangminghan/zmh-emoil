@@ -38,10 +38,10 @@ function getUserId(req: Request): string {
   }
 }
 
-// 从请求头提取 AI 配置（请求头优先，未设置时使用 .env 环境变量）
+// 从请求头提取 AI 配置（用户自定义 Key 优先，服务端 .env 兜底）
 function getAIOptions(req: Request): AIClientOptions {
   return {
-    apiKey: process.env.AI_API_KEY || (req.headers['x-ai-key'] as string) || '',
+    apiKey: (req.headers['x-ai-key'] as string) || process.env.AI_API_KEY || '',
     baseUrl: process.env.AI_API_BASE_URL || (req.headers['x-ai-base-url'] as string) || '',
     model: process.env.AI_MODEL || (req.headers['x-ai-model'] as string) || '',
   }

@@ -7,10 +7,10 @@ import type { AIClientOptions } from '../aiClient'
 const router = Router()
 const genId = () => Date.now().toString(36) + Math.random().toString(36).slice(2)
 
-// AI 配置：优先使用 .env 中的 API Key
+// AI 配置：用户自定义 Key 优先，服务端 .env 兜底
 function getAIOptions(req: Request): AIClientOptions {
   return {
-    apiKey: process.env.AI_API_KEY || (req.headers['x-ai-key'] as string) || '',
+    apiKey: (req.headers['x-ai-key'] as string) || process.env.AI_API_KEY || '',
     baseUrl: process.env.AI_API_BASE_URL || (req.headers['x-ai-base-url'] as string) || '',
     model: process.env.AI_MODEL || (req.headers['x-ai-model'] as string) || '',
   }
