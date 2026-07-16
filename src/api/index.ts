@@ -109,8 +109,9 @@ export const resumeApi = {
     const aiKey = localStorage.getItem('ai_job_ai_key')
     if (aiKey) headers['X-AI-Key'] = aiKey
 
-    // 直接调用后端（绕过 Vite proxy 以避免 multipart 代理问题）
-    const res = await fetch('http://localhost:3003/api/resumes/parse/file', {
+    // 开发环境直连后端（绕过 Vite proxy 以避免 multipart 代理问题），生产环境使用相对路径
+    const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3003' : ''
+    const res = await fetch(`${baseUrl}/api/resumes/parse/file`, {
       method: 'POST',
       headers,
       body: formData,
