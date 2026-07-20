@@ -88,10 +88,11 @@ export const useAuthStore = create<AuthState>((set) => ({
     set(state)
   },
 
-  // 登出：清除 token、存储和状态
+  // 登出：清除 token、存储和状态（包括 profile 缓存，防止不同用户看到彼此数据）
   logout: () => {
     setToken(null)
     removeFromStorage(STORAGE_KEY)
+    removeFromStorage('user_profile')  // 清除简历草稿、分析记录等用户数据
     set({ user: null, isLoggedIn: false })
   },
 

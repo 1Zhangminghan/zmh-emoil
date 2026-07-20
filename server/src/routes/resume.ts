@@ -135,7 +135,8 @@ router.delete('/:id', (req: Request, res: Response) => {
 // GET /:id - 获取单个简历
 router.get('/:id', (req: Request, res: Response) => {
   try {
-    const row = db.prepare('SELECT * FROM resumes WHERE id = ?').get(req.params.id) as Record<string, unknown> | undefined
+    const userId = getUserId(req)
+    const row = db.prepare('SELECT * FROM resumes WHERE id = ? AND user_id = ?').get(req.params.id, userId) as Record<string, unknown> | undefined
     if (!row) {
       res.status(404).json({ error: '简历不存在' })
       return
